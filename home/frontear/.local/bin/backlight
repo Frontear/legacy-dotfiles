@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# TODO: use udev to capture backlight source
+DEVICE=$(ls /sys/class/backlight)
+
+CUR_LEVEL="/sys/class/backlight/$DEVICE/brightness"
+MAX_LEVEL="/sys/class/backlight/$DEVICE/max_brightness"
+
+case $1 in
+    -m | --monitor)
+        udevadm monitor -ks backlight | while read; do
+            awk "BEGIN {print (($(cat $CUR_LEVEL) / $(cat $MAX_LEVEL)) * 100)}"
+        done
+        ;;
+    -i | --increase)
+        NEW_LEVEL=$(awk "BEGIN {print ($(cat $CUR_LEVEL) + ($(cat $MAX_LEVEL) * ${2-0.05}))}")
+        if [ $NEW_LEVEL -lt $(cat $MAX_LEVEL) ]; then
+            echo $NEW_LEVEL > $CUR_LEVEL
+        else
+            echo $(cat $MAX_LEVEL) > $CUR_LEVEL
+        fi
+        ;;
+    -d | --decrease)
+        NEW_LEVEL=$(awk "BEGIN {print ($(cat $CUR_LEVEL) - ($(cat $MAX_LEVEL) * ${2-0.05}))}")
+        if [ $NEW_LEVEL -gt 0 ]; then
+            echo $NEW_LEVEL > $CUR_LEVEL
+        else
+            echo 0 > $CUR_LEVEL
+        fi
+        ;;
+esac

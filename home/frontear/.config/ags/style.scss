@@ -1,0 +1,83 @@
+* {
+    all: unset;
+}
+
+@mixin text($fontFamily, $fontSize) {
+    min-width: ($fontSize / 2) * 3; // idk where i came up with this
+    font-size: $fontSize;
+    font-family: $fontFamily;
+}
+
+.icon {
+    @include text("Symbols Nerd Font", 24px);
+}
+
+.text {
+    $fontName: "SF Mono Regular";
+
+    @include text($fontName, 16px);
+
+    .runner & {
+        @include text($fontName, 32px);
+    }
+}
+
+.modules {
+    padding: 4px 8px;
+    border-radius: 24px;
+    background-color: rgba(black, 0.4);
+}
+
+.os_logo {
+    border-radius: 16px;
+    &:hover {
+        background-color: rgba(white, 0.1);
+    }
+}
+
+.workspace {
+    $color: white;
+    $alpha: 0.2;
+
+    color: rgba(invert($color), $alpha);
+
+    &.exists,
+    &:hover {
+        color: rgba($color, $alpha * 2);
+    }
+
+    &.active {
+        color: rgba($color, $alpha * 3);
+    }
+}
+
+.osd {
+    $offset: 32px;
+
+    background-color: rgba(black, 0.4);
+
+    *.icon {
+        padding-top: $offset;
+        font-size: 64px;
+    }
+
+    *.progress {
+        $radius: 12px;
+
+        border-radius: $radius;
+        background-color: rgba(white, 0.4);
+        margin-left: $offset;
+        margin-right: $offset;
+        margin-bottom: $offset;
+
+        & progress {
+            border-radius: $radius;
+            background-color: white;
+        }
+    }
+}
+
+.runner {
+    border: 2px solid rgba(white, 0.4);
+    background-color: rgba(black, 0.6);
+}

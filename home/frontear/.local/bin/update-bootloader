@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# I recommend attaching this script via a Pacman Hook
+#
+# [Trigger]
+# Operation = Install
+# Operation = Remove
+# Type = Path
+# Target = usr/lib/modules/*/vmlinuz
+# Target = usr/lib/initcpio/*
+#
+# [Action]
+# Description = Re-creating systemd-boot entries...
+# When = PostTransaction
+# Exec = /home/USER/.local/bin/update-bootloader
+
+if [ $EUID -ne 0 ]; then
+    echo "Requires root permissions, exiting..."
+    exit 1
+fi
+
+DEFAULT_PARAMETERS="quiet loglevel=3 systemd.show_status=auto rd.udev.log_level=3"
+
+OS_NAME="$(hostnamectl --json=short | jq -r ".OperatingSystemPrettyName")"
+MICROCODE="$(basename $(find /boot -type f -name "*-ucode.img"))"
+OPTIONS="root=\"PARTUUID=$(findmnt -no PARTUUID /)\" ro" # https://wiki.archlinux.org/title/Fsck#Mechanism
+
+rm /boot/loader/entries/*.conf # Clear out old things
+
+basename -a $(find /boot -type f -name "vmlinuz-linux-*") | while read KERNEL; do
+    TYPE=$(awk -F"-" "{print \$3}" <<< "$KERNEL")
+    DEFAULT_IMAGE="initramfs-linux-$TYPE.img"
+    ENTRY_FILE="/boot/loader/entries/$(awk -F" " "{print tolower(\$1)}" <<< "$OS_NAME")-$TYPE.conf"
+
+    FILE_CONTENT=("title   $OS_NAME (linux $TYPE)"
+                  "linux   /$KERNEL"
+                  "initrd  /$MICROCODE"
+                  "initrd  /$DEFAULT_IMAGE"
+                  "options $OPTIONS $DEFAULT_PARAMETERS")
+
+    touch $ENTRY_FILE
+    for line in "${FILE_CONTENT[@]}"; do
+        echo "$line" >> $ENTRY_FILE
+    done
+done

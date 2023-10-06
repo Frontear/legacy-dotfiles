@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case $1 in
+    -m | --mute)
+        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+        ;;
+    -i | --increase)
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ "${2:-5}%+"
+        ;;
+    -d | --decrease)
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ "${2:-5}%-"
+        ;;
+esac

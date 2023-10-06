@@ -1,0 +1,6 @@
+[user]
+	email = perm-iterate-0b@icloud.com
+	name = Ali Rizvi
+	signingKey = 83D39D45CBF249F0
+[commit]
+	gpgSign = true

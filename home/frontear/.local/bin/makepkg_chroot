@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot
+
+CHROOT="/tmp/chroot"
+
+if [ ! -d "$CHROOT" ]; then
+    mkdir "$CHROOT"
+    mkarchroot $CHROOT/root base-devel
+fi
+
+if [ -d "$CHROOT" ]; then
+    arch-nspawn $CHROOT/root pacman -Syu
+    makechrootpkg -c -r $CHROOT $@
+fi
