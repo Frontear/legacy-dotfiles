@@ -1,14 +1,9 @@
 #!/bin/sh
 
-if [ $EUID -ne 0 ]; then
-    echo "Requires root."
-    exit 1
-fi
-
-REPO_HEAD="/var/cache/dotfiles"
+REPO_HEAD="$XDG_CACHE_HOME/dotfiles"
 
 if [ ! -d "$REPO_HEAD" ]; then
-    sudo git init --bare $REPO_HEAD
+    git init --bare $REPO_HEAD
 fi
 
 git --git-dir=$REPO_HEAD --work-tree=/ $@
