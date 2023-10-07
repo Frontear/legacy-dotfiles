@@ -88,7 +88,7 @@ const volume = Label({
     connections: [[Audio, label => {
         let volume = Audio.speaker?.volume;
 
-        if (Audio.speaker?.isMuted) {
+        if (Audio.speaker?.stream.isMuted) {
             label.label = "󰝟";
         }
         else {
