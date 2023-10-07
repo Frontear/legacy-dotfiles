@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# TODO: install dotfiles in-place
+
+if [ $EUID -ne 0 ]; then
+    echo "Must be run with root privileges" >> /dev/stderr
+    exit 1
+fi
+
+TIMEZONE=(  "America/Toronto"   "/etc/localtime"     )
+LOCALE=(    "en_US.UTF-8"       "/etc/locale.conf"   )
+VCONSOLE=(  "us"                "/etc/vconsole.conf" )
+HOSTNAME=(  "frontear-net"      "/etc/hostname"      )
+
+# ${ARR[0]}
+
+if [ -f "${TIMEZONE[1]}" ]; then
+    echo "${TIMEZONE[1]} already exists" >> /dev/stderr
+else
+    ln -sf /usr/share/zoneinfo/${TIMEZONE[0]} ${TIMEZONE[1]}
+    hwclock --systohc
+fi
+
+if [ -f "${LOCALE[1]}" ]; then
+    echo "${LOCALE[1]} already exists" >> /dev/stderr
+else
+    sed -i "/${LOCALE[0]}/s/^# //g" /etc/locale.gen # https://www.graalvm.org/latest/reference-manual/ruby/UTF8Locale/
+    locale-gen
+
+    if [ $? -eq 0 ]; then
+        echo "LANG=${LOCALE[0]}" > ${LOCALE[1]}
+    fi
+fi
+
+if [ -f "${VCONSOLE[1]}" ]; then
+    echo "${VCONSOLE[1]} already exists" >> /dev/stderr
+else
+    echo "KEYMAP=${VCONSOLE[0]}" > ${VCONSOLE[1]}
+fi
+
+if [ -f "${HOSTNAME[1]}" ]; then
+    echo "${HOSTNAME[1]} already exists" >> /dev/stderr
+else
+    echo "${HOSTNAME[0]}" > ${HOSTNAME[1]}
+fi
