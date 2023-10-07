@@ -1,2 +1,2 @@
 # Frontear's dotfiles
-<img src=".github/archlinux.png" alt="Arch Linux Icon" />
+**OS**: <img width="16px" height="16px" src=".github/archlinux.png" alt="Arch Linux Icon" /> Arch Linux
