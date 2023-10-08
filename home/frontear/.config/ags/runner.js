@@ -1,5 +1,5 @@
 import { Box, Entry, Label, Window } from "./widgets.js";
-import { Hyprland } from "./services.js";
+import { Applications } from "./services.js";
 const { exec, execAsync } = ags.Utils;
 const { configDir, closeWindow } = ags.App;
 
@@ -16,9 +16,15 @@ const run = Label({
 const input = ags.Widget.Entry({
     className: "text",
     onAccept: entry => {
-        execAsync(["gtk-launch", entry.text]).catch(err => {
-            console.log("Failed to launch application");
-        });
+        let app = Applications.query(entry.text);
+
+        if (app.length > 1) {
+            console.log("Too many applications to handle");
+            return;
+        }
+
+        app[0].launch();
+
         entry.text = "";
         closeWindow("hyprrunner");
     },
@@ -28,6 +34,7 @@ const input = ags.Widget.Entry({
 const runner = Box({
     className: "runner",
     widthRequest: monitor["width"] * 0.30,
+    margin: monitor["height"] * 0.10,
     children: [
         run,
         input
@@ -42,6 +49,5 @@ export const hyprrunner = Window({
     exclusive: false,
     focusable: true,
     layer: "overlay",
-    margin: monitor["height"] * 0.10,
     popup: true
 });

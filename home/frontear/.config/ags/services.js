@@ -1,5 +1,6 @@
 const { Service, Variable } = ags;
 
+export const Applications = Service.Applications;
 export const Audio = Service.Audio;
 export const Backlight = Variable(undefined, {
     listen: `backlight -m`
