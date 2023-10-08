@@ -40,4 +40,7 @@ For SSDs:
 
 For updated pacman mirrors:
 # systemctl enable reflector.timer
+
+For profile-sync-daemon:
+$ systemctl --user enable psd.service
 ```
