@@ -4,8 +4,10 @@
 
 ## Screenshots
 
-<img style="height: 40%;" src=".github/screenshot0.png" alt="Empty workspace" />
-<img style="height: 40%;" src=".github/screenshot1.png" alt="Workspace with nvim on the left, neofetch and cmatrix on the right" />
+<div>
+    <img style="width: 45%;" src=".github/screenshot0.png" alt="Empty workspace" />
+    <img style="width: 45%;" src=".github/screenshot1.png" alt="Workspace with nvim on the left, neofetch and cmatrix on the right" />
+</div>
 
 ## Installation
 Install the following packages:
