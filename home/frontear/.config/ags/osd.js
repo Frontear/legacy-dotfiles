@@ -1,7 +1,8 @@
 import { Box, Label, ProgressBar, Window } from "./widgets.js";
 import { Hyprland } from "./services.js";
+const { exec } = ags.Utils;
 
-let monitor = Hyprland.HyprctlGet("monitors")[0];
+let monitor = JSON.parse(exec("hyprctl -j monitors"))[0];
 
 const icon = Label({
     className: "icon",

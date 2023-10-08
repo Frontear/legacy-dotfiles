@@ -3,7 +3,7 @@ import { Hyprland } from "./services.js";
 const { exec, execAsync } = ags.Utils;
 const { configDir, closeWindow } = ags.App;
 
-let monitor = Hyprland.HyprctlGet("monitors")[0];
+let monitor = JSON.parse(exec("hyprctl -j monitors"))[0];
 
 const run = Label({
     className: "text run",

@@ -147,7 +147,7 @@ const right_modules = Box({
 
 export const hyprbar = Window({
     setup: window => {
-        let gaps_out = Hyprland.HyprctlGet("getoption general:gaps_out")["int"];
+        let gaps_out = JSON.parse(exec("hyprctl -j getoption general:gaps_out"))["int"];
 
         window.margin = [ gaps_out, gaps_out, 0, gaps_out ]; // TOP, RIGHT, BOTTOM, LEFT
     },

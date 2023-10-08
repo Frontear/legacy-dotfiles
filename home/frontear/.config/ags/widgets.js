@@ -208,7 +208,7 @@ export const Label = ({label, ...rest}) => Widget.Label({
     // cursorPosition,
     // ellipsize
     // justify
-    label: label,
+    label: label || "",
     // lines
     // maxWidthChars
     // mnemonicKeyval
