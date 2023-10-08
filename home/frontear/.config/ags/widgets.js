@@ -1,4 +1,4 @@
-const { Widget } = ags;
+import Widget from "resource:///com/github/Aylur/ags/widget.js";
 
 // sane defaults for all GTK Widgets, including AGS properties
 let BaseProperties = {
@@ -193,6 +193,8 @@ export const Entry = ({...rest}) => Widget.Entry({
     // visibility
     // widthChars
     // xalign: 0.5
+
+    ...rest
 });
 
 export const Label = ({label, ...rest}) => Widget.Label({

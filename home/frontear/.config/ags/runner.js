@@ -1,7 +1,7 @@
+import { exec } from "resource:///com/github/Aylur/ags/utils.js";
+import App from "resource:///com/github/Aylur/ags/app.js";
 import { Box, Entry, Label, Window } from "./widgets.js";
 import { Applications } from "./services.js";
-const { exec, execAsync } = ags.Utils;
-const { configDir, closeWindow } = ags.App;
 
 let monitor = JSON.parse(exec("hyprctl -j monitors"))[0];
 
@@ -13,7 +13,7 @@ const run = Label({
     label: "Run> ",
 });
 
-const input = ags.Widget.Entry({
+const input = Entry({
     className: "text",
     onAccept: entry => {
         let app = Applications.query(entry.text);
@@ -26,7 +26,7 @@ const input = ags.Widget.Entry({
         app[0].launch();
 
         entry.text = "";
-        closeWindow("hyprrunner");
+        App.closeWindow("hyprrunner");
     },
     maxWidthChars: 20,
 });
