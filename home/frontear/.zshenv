@@ -35,4 +35,7 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 unset SSH_AGENT_PID
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
+# ranger --copy-config=rc
+export RANGER_LOAD_DEFAULT_RC="FALSE"
+
 export PATH="$HOME/.local/bin:$PATH:$CARGO_HOME/bin"
