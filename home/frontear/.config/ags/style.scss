@@ -9,27 +9,27 @@
 }
 
 .icon {
-    @include text("Symbols Nerd Font", 24px);
+    @include text("Symbols Nerd Font", 1.5rem);
 }
 
 .text {
     $fontName: "SF Mono Regular";
 
-    @include text($fontName, 16px);
+    @include text($fontName, 1rem);
 
     .runner & {
-        @include text($fontName, 32px);
+        @include text($fontName, 2rem);
     }
 }
 
 .modules {
-    padding: 4px 8px;
-    border-radius: 24px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1.5rem;
     background-color: rgba(black, 0.4);
 }
 
 .os_logo {
-    border-radius: 16px;
+    border-radius: 1rem;
     &:hover {
         background-color: rgba(white, 0.1);
     }
@@ -52,17 +52,17 @@
 }
 
 .osd {
-    $offset: 32px;
+    $offset: 2rem;
 
     background-color: rgba(black, 0.4);
 
     *.icon {
         padding-top: $offset;
-        font-size: 64px;
+        font-size: 4rem;
     }
 
     *.progress {
-        $radius: 12px;
+        $radius: 1rem;
 
         border-radius: $radius;
         background-color: rgba(white, 0.4);
@@ -78,6 +78,6 @@
 }
 
 .runner {
-    border: 2px solid rgba(white, 0.4);
+    border: 0.125rem solid rgba(white, 0.4);
     background-color: rgba(black, 0.6);
 }
