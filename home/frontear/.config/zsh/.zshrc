@@ -8,7 +8,7 @@ else
   export EDITOR="nvim"
 fi
 
-alias l="ls -lah"
+alias l="ls -lah --group-directories-first"
 
 # --------------------------------------------------
 

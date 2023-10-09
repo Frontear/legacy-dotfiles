@@ -1,5 +1,5 @@
-import { Box, Label, ProgressBar, Window } from "./api/widgets.js";
-import { Hyprland } from "./api/services.js";
+import { Box, Label, ProgressBar, Window } from "../api/widgets.js";
+import { Hyprland } from "../api/services.js";
 const { exec } = ags.Utils;
 
 let monitor = JSON.parse(exec("hyprctl -j monitors"))[0];
