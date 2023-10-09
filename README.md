@@ -13,7 +13,7 @@
 Install the following packages:
 
 ```
-# yay -Syu apple-fonts aylurs-gtk-shell-git cliphist devtools git google-chrome grimblast-git hyprland-git inotify-tools kitty ly mlocate neofetch neovim networkmanager openssh pipewire pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse profile-sync-daemon reflector sassc swaybg ttf-nerd-fonts-symbols wireplumber wl-clip-persist-git xdg-desktop-portal-gtk xdg-desktop-portal-hyprland-git zsh zsh-completions
+# yay -Syu apple-fonts aylurs-gtk-shell-git cliphist devtools firewalld git google-chrome grimblast-git hyprland-git inotify-tools kitty ly mlocate neofetch neovim networkmanager openssh pipewire pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse profile-sync-daemon reflector sassc swaybg ttf-nerd-fonts-symbols wireplumber wl-clip-persist-git xdg-desktop-portal-gtk xdg-desktop-portal-hyprland-git zsh zsh-completions
 ```
 
 If your shell is anything _but_ `/bin/zsh`, switch it via [usermod(8)](https://man.archlinux.org/man/usermod.8.en), otherwise translate the various zsh files into your desired shell (and omit installation of zsh* from the above packages).
@@ -28,6 +28,9 @@ For ly:
 
 For network:
 # systemctl enable NetworkManager.service
+
+For firewall:
+# systemctl enable firewalld.service
 
 For systemd-boot:
 # systemctl enable systemd-boot-update.service
