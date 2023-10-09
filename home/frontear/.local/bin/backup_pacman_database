@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DIRECTORY="/home/frontear/Documents/archive/backups/pacman"
+DIRECTORY="/home/frontear/Documents/archive/backups/pacman/database"
 FILENAME="database-$(date +"%F-%s").tar.bz2"
 
 if [ ! -d "$DIRECTORY" ]; then
