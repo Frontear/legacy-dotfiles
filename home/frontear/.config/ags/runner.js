@@ -1,7 +1,7 @@
 import { exec } from "resource:///com/github/Aylur/ags/utils.js";
 import App from "resource:///com/github/Aylur/ags/app.js";
-import { Box, Entry, Label, Window } from "./widgets.js";
-import { Applications } from "./services.js";
+import { Box, Entry, Label, Window } from "./api/widgets.js";
+import { Applications } from "./api/services.js";
 
 let monitor = JSON.parse(exec("hyprctl -j monitors"))[0];
 
