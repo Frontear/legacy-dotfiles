@@ -4,7 +4,7 @@ DIRECTORY="$HOME/.config/ags"
 
 while true; do
     ags &
-    inotifywait -qe close_write $DIRECTORY
+    inotifywait -rqe close_write $DIRECTORY
     ags --quit
 
     wait $!
