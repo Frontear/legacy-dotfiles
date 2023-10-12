@@ -1,13 +1,14 @@
 #!/bin/sh
 
-FILE="keys.tar.lz"
+FILE="keys.tar.gz"
 
 pushd /tmp >> /dev/null
 
-gpg --export > public.key
-gpg --export-secret-key > private.key
+gpg --export --armor --output public.key
+gpg --export-secret-key --armor --output private.key
+gpg --export-ownertrust --armor --output trust.db
 
-atool -a $FILE public.key private.key
+atool -a $FILE public.key private.key trust.db
 echo "keys saved at $PWD/$FILE"
 
 # TODO: securely erase above keys from tmpfs
