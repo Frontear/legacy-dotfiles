@@ -1,0 +1,13 @@
+#!/bin/sh
+
+pushd /tmp >> /dev/null
+
+gpg --export > public.key
+gpg --export-secret-key > private.key
+
+atool -a keys.tar.xz public.key private.key
+echo "keys saved at $PWD/keys.tar.xz"
+
+# TODO: securely erase above keys from tmpfs
+
+popd >> /dev/null
