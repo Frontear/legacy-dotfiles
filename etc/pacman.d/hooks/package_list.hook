@@ -6,5 +6,5 @@ Target = *
 
 [Action]
 Description = "Backing up package lists..."
-Exec = /home/frontear/.local/bin/backup_pacman_pkg_list
+Exec = /home/frontear/.local/bin/backup pkglist
 When = PostTransaction

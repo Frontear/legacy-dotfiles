@@ -7,5 +7,5 @@ Target = *
 
 [Action]
 Description = Backing up pacman database...
-Exec = /home/frontear/.local/bin/backup_pacman_database
+Exec = /home/frontear/.local/bin/backup database
 When = PostTransaction
