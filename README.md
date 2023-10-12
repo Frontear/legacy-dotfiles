@@ -13,7 +13,7 @@
 Install the following packages:
 
 ```
-# yay -Syu apple-fonts aylurs-gtk-shell-git btrfs-progs cliphist devtools dosfstools e2fsprogs exfatprogs ffmpeg ffmpegthumbnailer firewalld git google-chrome grimblast-git hyprland-git imagemagick inotify-tools kitty limimobiledevice-git linux-zen ly mlocate neofetch neovim networkmanager ntfs-3g openssh perl-image-exiftool pipewire pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse profile-sync-daemon python-pillow qt5-wayland ranger reflector sassc swaybg ttf-nerd-fonts-symbols wireplumber wl-clip-persist-git xdg-desktop-portal-gtk xdg-desktop-portal-hyprland-git zsh zsh-completions
+# yay -Syu apple-fonts aylurs-gtk-shell-git cliphist devtools ffmpeg ffmpegthumbnailer firewalld git google-chrome grimblast-git hyprland-git imagemagick inotify-tools kitty linux-zen ly mlocate neofetch neovim networkmanager openssh perl-image-exiftool pipewire pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse profile-sync-daemon python-pillow qt5-wayland ranger reflector sassc swaybg ttf-nerd-fonts-symbols wireplumber wl-clip-persist-git xdg-desktop-portal-gtk xdg-desktop-portal-hyprland-git zsh zsh-completions
 ```
 
 If your shell is anything _but_ `/bin/zsh`, switch it via [usermod(8)](https://man.archlinux.org/man/usermod.8.en), otherwise translate the various zsh files into your desired shell (and omit installation of zsh* from the above packages).
