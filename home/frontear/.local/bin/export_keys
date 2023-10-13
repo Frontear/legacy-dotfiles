@@ -2,15 +2,26 @@
 
 FILE="keys.tar.gz"
 
-pushd /tmp >> /dev/null
+USR=$(id -un)
+GRP=$(id -gn)
 
-gpg --export --armor --output public.key
-gpg --export-secret-key --armor --output private.key
-gpg --export-ownertrust --armor --output trust.db
+mkdir /tmp/gpgkeys
+sudo mount -t ramfs -o size=1024M ramfs /tmp/gpgkeys
+sudo chown $USR:$GRP /tmp/gpgkeys
+
+pushd /tmp/gpgkeys >> /dev/null
+
+gpg --export --armor > public.key
+gpg --export-secret-key --armor > private.key
+gpg --export-ownertrust --armor > trust.db
 
 atool -a $FILE public.key private.key trust.db
-echo "keys saved at $PWD/$FILE"
+gpg -c $FILE
 
-# TODO: securely erase above keys from tmpfs
+mv $FILE.gpg /tmp/$FILE.gpg # move to tmpfs and hold there until user or shutdown
+echo "Key extraction saved in /tmp/$FILE.gpg"
 
 popd >> /dev/null
+
+sudo umount /tmp/gpgkeys # wipes all data in ramfs upon unmount
+rm -rf /tmp/gpgkeys
