@@ -7,10 +7,8 @@
 if [ ${#@} -eq 1 ]; then
     # Allow files and all other text, but not directories
     if [ -r "$1" ]; then
-        CONTENT="$(cat $1)"
+        curl -F 'file=@-' 0x0.st < $1
     elif [ ! -d "$1" ] && [ ! -z "$1" ]; then
-        CONTENT="$1"
+        curl -F 'file=@-' 0x0.st <<< $(echo "$CONTENT")
     fi
-
-    curl -F 'file=@-' 0x0.st <<< "$(echo $CONTENT)"
 fi
