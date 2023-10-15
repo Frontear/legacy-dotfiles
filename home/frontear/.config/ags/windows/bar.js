@@ -85,15 +85,15 @@ const network = Label({
 const volume = Label({
     className: "icon",
     connections: [[Audio, label => {
-        let volume = Audio.speaker?.volume;
+        let volume = Audio.value?.volume;
 
-        if (Audio.speaker?.stream.isMuted) {
+        if (Audio.value?.isMuted) {
             label.label = "󰝟";
         }
         else {
-            label.label = volume >= 0.66 ? "󰕾" : volume >= 0.33 ? "󰖀" : "󰕿";
+            label.label = volume >= 66 ? "󰕾" : volume >= 33 ? "󰖀" : "󰕿";
         }
-    }, "speaker-changed"]],
+    }]],
 });
 
 const backlight = Label({
