@@ -1,6 +1,6 @@
 import { Box, Entry, Label, Window } from "../api/widgets.js";
-import { Applications } from "../api/services.js";
 import { exec, closeWindow } from "../api/utils.js";
+import { Applications } from "../api/services.js";
 
 let monitor = JSON.parse(exec("hyprctl -j monitors"))[0];
 

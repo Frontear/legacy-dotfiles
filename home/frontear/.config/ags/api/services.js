@@ -1,7 +1,7 @@
 import ServiceApplications from "resource:///com/github/Aylur/ags/service/applications.js";
-import Variable from "resource:///com/github/Aylur/ags/variable.js";
 import ServiceHyprland from "resource:///com/github/Aylur/ags/service/hyprland.js";
 import ServiceNetwork from "resource:///com/github/Aylur/ags/service/network.js";
+import Variable from "resource:///com/github/Aylur/ags/variable.js";
 
 export const Applications = ServiceApplications;
 export const Audio = Variable(undefined, {

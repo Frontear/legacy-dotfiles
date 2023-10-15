@@ -20,6 +20,12 @@ If your shell is anything _but_ `/bin/zsh`, switch it via [usermod(8)](https://m
 
 You may omit whichever packages you wish to from the above listing, supplementing them with your own (**systemd-networkd** instead of **NetworkManager**, **firefox** instead of **google-chrome**), just be aware of the configurations you will need to change or fix (wifi module for ags, psd config for firefox). You may also skip them entirely, just be aware that certain things will not work.
 
+Make sure you don't forget to enable the zram:
+```
+$ /etc/fstab
+/dev/zram0 none swap defaults,pri=100 0 0
+```
+
 Once packages have been installed, enable some systemd services to get them to work. Once again, enable/disable at your own discretion following whatever you chose to use:
 ```
 For ly:
