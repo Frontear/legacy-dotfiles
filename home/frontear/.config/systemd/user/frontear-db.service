@@ -1,0 +1,6 @@
+[Unit]
+Description=Regenerate frontear package database
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/regen_db

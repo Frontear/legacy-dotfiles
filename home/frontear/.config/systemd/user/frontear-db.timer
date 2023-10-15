@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily regeneration of the frontear package database
+
+[Timer]
+OnCalendar=*-*-* 18:00:00
+AccuracySec=1us
+RandomizedDelaySec=5m
+Persistent=True
+
+[Install]
+WantedBy=timers.target
