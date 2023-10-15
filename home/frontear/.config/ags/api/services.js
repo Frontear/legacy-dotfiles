@@ -5,7 +5,7 @@ import Variable from "resource:///com/github/Aylur/ags/variable.js";
 
 export const Applications = ServiceApplications;
 export const Audio = Variable(undefined, {
-    listen: [["audio", "-m"],
+    listen: [["sysd", "audio", "-m"],
         out => {
             let split = out.split(":");
 
@@ -17,7 +17,7 @@ export const Audio = Variable(undefined, {
     ]
 });
 export const Backlight = Variable(undefined, {
-    listen: [["backlight", "-m"],
+    listen: [["sysd", "backlight", "-m"],
         out => {
             return {
                 percent: Number(out)
@@ -26,7 +26,7 @@ export const Backlight = Variable(undefined, {
     ]
 });
 export const Battery = Variable(undefined, {
-    listen: [["battery", "-m"],
+    listen: [["sysd", "battery", "-m"],
         out => {
             let split = out.split(":")
 
