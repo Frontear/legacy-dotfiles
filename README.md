@@ -49,4 +49,7 @@ For updated pacman mirrors:
 
 For profile-sync-daemon:
 $ systemctl --user enable psd.service
+
+For stevenblack hosts:
+$ systemctl --user enable stevenblack.timer
 ```
