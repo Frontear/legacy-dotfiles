@@ -1,4 +1,5 @@
 # https://wiki.archlinux.org/title/GnuPG#Configure_pinentry_to_use_the_correct_TTY
+
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye &> /dev/null
 
@@ -7,6 +8,15 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR="nvim"
 fi
+
+# https://wiki.archlinux.org/title/Color_output_in_console#Applications
+
+alias diff="diff --color=auto"
+alias grep="grep --color=auto"
+alias ls="ls --color=auto"
+export LESS="-R --use-color -Dd+r\$Du+b$"
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
+export MANROFFOPT="-P -c"
 
 alias l="ls -lah --group-directories-first"
 
