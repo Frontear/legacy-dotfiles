@@ -84,15 +84,12 @@ battery() {
 
 case $1 in
     audio)
-        shift
-        audio "${@}"
+        audio "${@:2}"
         ;;
     backlight)
-        shift
-        backlight "${@}"
+        backlight "${@:2}"
         ;;
     battery)
-        shift
-        battery "${@}"
+        battery "${@:2}"
         ;;
 esac
