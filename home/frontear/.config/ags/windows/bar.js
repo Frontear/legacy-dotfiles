@@ -1,6 +1,6 @@
 import { Audio, Backlight, Battery, Hyprland, Network } from "../api/services.js";
-import { exec, execAsync } from "resource:///com/github/Aylur/ags/utils.js";
 import { Box, Button, CenterBox, Label, Window } from "../api/widgets.js";
+import { exec, execAsync } from "../api/utils.js";
 
 const os_logo = Button({
     className: "os_logo",
