@@ -5,6 +5,6 @@ Type = Package
 Target = *
 
 [Action]
-Description = "Backing up package lists..."
+Description = Backing up package lists...
 Exec = /home/frontear/.local/bin/backup pkglist
 When = PostTransaction
