@@ -41,6 +41,9 @@ For time syncing (enables systemd-timesyncd.service):
 For SSDs:
 # systemctl enable fstrim.timer
 
+For ext4 scrubbing:
+# systemctl enable e2scrub_all.timer
+
 For updated pacman mirrors:
 # systemctl enable reflector.timer
 
