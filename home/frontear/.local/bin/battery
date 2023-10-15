@@ -1,0 +1,16 @@
+#!/bin/sh
+
+BATTERY_DEVICES=$(find /sys/class/power_supply/*/ -maxdepth 1 -type f -name "capacity" -exec dirname {} \;)
+
+case $1 in
+    -m | --monitor)
+        # Done this way to avoid event firing from "cat"
+        while true; do
+            for DEVICE in "${BATTERY_DEVICES[@]}"; do
+                # percent:Charging|Discharging|Full
+                echo "$(cat $DEVICE/capacity):$(cat $DEVICE/status)"
+            done
+            inotifywait -qqe close "${BATTERY_DEVICES[@]}"
+        done
+        ;;
+esac

@@ -99,7 +99,7 @@ const volume = Label({
 const backlight = Label({
     className: "icon",
     connections: [[Backlight, label => {
-        let percent = Number(`${Backlight.value}`);
+        let percent = Backlight.value?.percent;
         label.label = percent >= 95 ? "󰛨" : percent >= 90 ? "󱩖" : percent >= 80 ? "󱩕" : percent >= 70 ? "󱩔" : percent >= 60 ? "󱩓" : percent >= 50 ? "󱩒" : percent >= 40 ? "󱩑" : percent >= 30 ? "󱩐" : percent >= 20 ? "󱩏" : percent >= 10 ? "󱩎" : "󰛩";
     }]]
 });
@@ -107,18 +107,18 @@ const backlight = Label({
 const battery = Label({
     className: "icon",
     connections: [[Battery, label => {
-        let level = Battery.percent;
+        let level = Battery.value?.percent;
 
-        if (Battery.charged) {
+        if (Battery.value?.charged) {
             label.label = "󱟢";
         }
-        else if (Battery.charging) {
+        else if (Battery.value?.charging) {
             label.label = level >= 98 ? "󰂅" : level >= 90 ? "󰂋" : level >= 80 ? "󰂊" : level >= 70 ? "󰢞" : level >= 60 ? "󰂉" : level >= 50 ? "󰢝" : level >= 40 ? "󰂈" : level >= 30 ? "󰂇" : level >= 20 ? "󰂆" : level >= 10 ? "󰢜" : "󰢟";
         }
         else {
             label.label = level >= 98 ? "󰁹" : level >= 90 ? "󰂂" : level >= 80 ? "󰂁" : level >= 70 ? "󰂀" : level >= 60 ? "󰁿" : level >= 50 ? "󰁾" : level >= 40 ? "󰁽" : level >= 30 ? "󰁼" : level >= 20 ? "󰁻" : level >= 10 ? "󰁺" : "󱃍";
         }
-    }, "changed"]],
+    }]],
 });
 
 const clock = Label({

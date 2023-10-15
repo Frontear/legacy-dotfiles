@@ -5,6 +5,7 @@ DEVICES="/sys/class/backlight"
 case $1 in
     # TODO: custom monitor format output
     -m | --monitor)
+        # TODO: ignore first few lines from udevadm monitor
         udevadm monitor -ks backlight | while read; do
             find $DEVICES -type l | while read BACKLIGHT; do
                 CUR_LEVEL="$(cat $BACKLIGHT/brightness)"

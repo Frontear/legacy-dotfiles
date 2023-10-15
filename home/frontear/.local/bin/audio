@@ -4,6 +4,7 @@ case $1 in
     -m | --monitor)
         DEVICE_ID=$(wpctl inspect @DEFAULT_AUDIO_SINK@ | awk -F"\"" "/device.id/{print \$2}")
         pw-mon -oa | awk "/id: $DEVICE_ID/{print; fflush()}" | while read; do
+            # TODO: add "mute" to stdout
             wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk "{print \$2 * 100}"
         done
         ;;
