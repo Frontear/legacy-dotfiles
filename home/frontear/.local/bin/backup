@@ -17,6 +17,8 @@ case $1 in
             exit 1
         fi
 
+        find $BAK_PATH -type f -mtime +5 -exec rm {} \; # wipes older than 5 days old
+
         tar -cjf $NAME_DB /var/lib/pacman/local &> /dev/null # suppress output
 
         if [ -f "$NAME_DB" ]; then
@@ -34,6 +36,8 @@ case $1 in
         if [ ! -d "$BAK_PATH" ]; then
             exit 1
         fi
+
+        find $BAK_PATH -type f -mtime +5 -exec rm {} \; # wipes older than 5 days old
 
         pacman -Qq > $NAME_ALL
         pacman -Qqe > $NAME_AUR
