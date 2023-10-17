@@ -1,5 +1,6 @@
 import ServiceApplications from "resource:///com/github/Aylur/ags/service/applications.js";
 import ServiceHyprland from "resource:///com/github/Aylur/ags/service/hyprland.js";
+import ServiceBattery from "resource:///com/github/Aylur/ags/service/battery.js";
 import ServiceNetwork from "resource:///com/github/Aylur/ags/service/network.js";
 import Variable from "resource:///com/github/Aylur/ags/variable.js";
 
@@ -25,17 +26,6 @@ export const Backlight = Variable(undefined, {
         }
     ]
 });
-export const Battery = Variable(undefined, {
-    listen: [["sysd", "battery", "-m"],
-        out => {
-            let split = out.split(":")
-
-            return {
-                percent: Number(split[0]),
-                charged: split[1] === "Full",
-                charging: split[1] === "Charging"
-            };
-        }]
-});
+export const Battery = ServiceBattery;
 export const Hyprland = ServiceHyprland;
 export const Network = ServiceNetwork;

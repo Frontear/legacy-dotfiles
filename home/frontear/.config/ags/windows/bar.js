@@ -107,12 +107,12 @@ const backlight = Label({
 const battery = Label({
     className: "icon",
     connections: [[Battery, label => {
-        let level = Battery.value?.percent;
+        let level = Battery.percent;
 
-        if (Battery.value?.charged) {
+        if (Battery.charged) {
             label.label = "󱟢";
         }
-        else if (Battery.value?.charging) {
+        else if (Battery.charging) {
             label.label = level >= 98 ? "󰂅" : level >= 90 ? "󰂋" : level >= 80 ? "󰂊" : level >= 70 ? "󰢞" : level >= 60 ? "󰂉" : level >= 50 ? "󰢝" : level >= 40 ? "󰂈" : level >= 30 ? "󰂇" : level >= 20 ? "󰂆" : level >= 10 ? "󰢜" : "󰢟";
         }
         else {
