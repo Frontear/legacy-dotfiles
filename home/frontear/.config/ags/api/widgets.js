@@ -3,8 +3,8 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js";
 // sane defaults for all GTK Widgets, including AGS properties
 let BaseProperties = {
     // https://github.com/Aylur/ags/wiki/Widgets
-    className: undefined,
-    css: undefined,
+    // className
+    // css
     style: undefined,
     properties: undefined,
     connections: undefined,
