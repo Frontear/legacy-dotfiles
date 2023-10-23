@@ -4,12 +4,8 @@
 
 CHROOT="/tmp/chroot"
 
-if [ ! -d "$CHROOT" ]; then
-    mkdir "$CHROOT"
-    mkarchroot $CHROOT/root base-devel
-fi
+# Ensure container exists and is up to date.
+[ ! -d "$CHROOT" ] && mkdir "$CHROOT" && mkarchroot $CHROOT/root base-devel
+[ -d "$CHROOT" ] && arch-nspawn $CHROOT/root pacman -Syu
 
-if [ -d "$CHROOT" ]; then
-    arch-nspawn $CHROOT/root pacman -Syu
-    makechrootpkg -c -r $CHROOT $@
-fi
+makechrootpkg -c -r $CHROOT $@
