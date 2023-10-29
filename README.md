@@ -50,6 +50,9 @@ For SSDs:
 For ext4 scrubbing:
 # systemctl enable e2scrub_all.timer
 
+For btrfs scrubbing:
+# systemctl enable btrfs-scrub@$(systemd-escape -p path/to/mountpoint).timer
+
 For updated pacman mirrors:
 # systemctl enable reflector.timer
 
