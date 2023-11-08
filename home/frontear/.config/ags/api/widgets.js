@@ -4,12 +4,14 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js";
 let BaseProperties = {
     // https://github.com/Aylur/ags/wiki/Widgets
     // className
+    // classNames
     // css
-    style: undefined,
-    properties: undefined,
-    connections: undefined,
-    binds: undefined,
-    setup: undefined,
+    hpack: "center",
+    vpack: "center",
+    properties: null,
+    connections: null,
+    binds: null,
+    setup: null,
 
     // https://docs.gtk.org/gtk3/class.Widget.html#properties
     // appPaintable
@@ -18,7 +20,7 @@ let BaseProperties = {
     // events
     expand: false,
     // focusOnClick,
-    halign: "center",
+    // halign
     // hasDefault
     // hasFocus
     hasTooltip: false,
@@ -39,9 +41,10 @@ let BaseProperties = {
     // parent
     // receivesDefault
     sensitive: true,
+    // style
     // tooltipMarkup
     // tooltipText,
-    valign: "center",
+    // valign
     vexpand: false,
     vexpandSet: true,
     visible: true,
@@ -53,7 +56,7 @@ export const Box = ({children, ...rest}) => Widget.Box({
 
     // https://github.com/Aylur/ags/wiki/Basic-Widgets#box
     vertical: false,
-    children: children,
+    children: children || [],
 
     // https://docs.gtk.org/gtk3/class.Container.html#properties
     // borderWidth
@@ -72,17 +75,17 @@ export const Button = ({child, ...rest}) => Widget.Button({
 
     // https://github.com/Aylur/ags/wiki/Basic-Widgets#button
     child: child,
-    onClicked: undefined,
-    onPrimaryClick: undefined,
-    onSecondaryClick: undefined,
-    onMiddleClick: undefined,
-    onPrimaryClickRelease: undefined,
-    onSecondaryClickRelease: undefined,
-    onMiddleClickRelease: undefined,
-    onHover: undefined,
-    onHoverLost: undefined,
-    onScrollUp: undefined,
-    onScrollDown: undefined,
+    onClicked: null,
+    onPrimaryClick: null,
+    onSecondaryClick: null,
+    onMiddleClick: null,
+    onPrimaryClickRelease: null,
+    onSecondaryClickRelease: null,
+    onMiddleClickRelease: null,
+    onHover: null,
+    onHoverLost: null,
+    onScrollUp: null,
+    onScrollDown: null,
 
     // https://docs.gtk.org/gtk3/iface.Actionable.html#properties
     // actionName
@@ -114,7 +117,7 @@ export const CenterBox = ({startWidget, centerWidget, endWidget, ...rest}) => Wi
 
     // https://github.com/Aylur/ags/wiki/Basic-Widgets#box
     vertical: false,
-    children: undefined,
+    children: [],
 
     // https://github.com/Aylur/ags/wiki/Basic-Widgets#centerbox
     startWidget: startWidget,
@@ -140,8 +143,8 @@ export const Entry = ({...rest}) => Widget.Entry({
     //...BaseProperties,
 
     // https://github.com/Aylur/ags/wiki/Basic-Widgets#entry
-    // onChange: undefined,
-    // onAccept: undefined,
+    // onChange
+    // onAccept
 
     // https://docs.gtk.org/gtk3/iface.CellEditable.html#properties
     // editingCanceled
@@ -239,11 +242,11 @@ export const ProgressBar = ({value, ...rest}) => Widget.ProgressBar({
 
     // https://github.com/Aylur/ags/wiki/Basic-Widgets#progressbar
     vertical: false,
-    // value
+    value: value, // TODO: ensure works
 
     // https://docs.gtk.org/gtk3/class.ProgressBar.html#properties
     // ellipsize
-    fraction: value,
+    // fraction
     // inverted
     // pulseStep
     // text
@@ -262,7 +265,7 @@ export const Window = ({child, name, anchor, exclusive, ...rest}) => Widget.Wind
     exclusive: exclusive,
     focusable: false,
     layer: "top",
-    margin: 0,
+    margins: [],
     monitor: 0,
     popup: false,
 

@@ -4,7 +4,7 @@ import { exec, execAsync } from "../api/utils.js";
 
 const os_logo = Button({
     className: "os_logo",
-    style: "color: rgb(73, 214, 255);",
+    css: "color: rgb(73, 214, 255);",
     child: Label({
         className: "icon",
         label: "󰣇"
@@ -34,12 +34,12 @@ const workspaces = Box({
             }));
         }
     },
-    halign: "fill"
+    hpack: "fill"
 });
 
 const left_modules = Box({
     className: "modules",
-    halign: "start",
+    hpack: "start",
     children: [
         os_logo,
         separator(),
@@ -57,7 +57,7 @@ const title = Label({
 
 const center_modules = Box({
     className: "modules",
-    halign: "center",
+    hpack: "center",
     children: [
         title
     ]
@@ -133,7 +133,7 @@ const clock = Label({
 
 const right_modules = Box({
     className: "modules",
-    halign: "end",
+    hpack: "end",
     children: [
         network,
         volume,
@@ -145,12 +145,7 @@ const right_modules = Box({
 });
 
 export const hyprbar = Window({
-    setup: window => {
-        let gaps_out = JSON.parse(exec("hyprctl -j getoption general:gaps_out"))["int"];
-
-        window.margin = [ gaps_out, gaps_out, 0, gaps_out ]; // TOP, RIGHT, BOTTOM, LEFT
-    },
-    halign: "fill",
+    hpack: "fill",
     child: CenterBox({
         startWidget: left_modules,
         centerWidget: center_modules,
@@ -161,3 +156,5 @@ export const hyprbar = Window({
     exclusive: true
 });
 
+let gaps_out = JSON.parse(exec("hyprctl -j getoption general:gaps_out"))["int"];
+hyprbar.margins = [ gaps_out, gaps_out, 0, gaps_out ]; // TOP, RIGHT, BOTTOM, LEFT
