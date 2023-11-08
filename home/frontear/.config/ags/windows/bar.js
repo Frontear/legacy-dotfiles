@@ -17,25 +17,27 @@ const separator = () => Label({
 });
 
 const workspaces = Box({
-    setup: box => {
-        const max_workspaces = 10;
-        for (let i = 1; i <= max_workspaces; ++i) {
-            box.add(Button({
-                className: "workspace",
-                connections: [[Hyprland, button => {
-                    button.toggleClassName("exists", Hyprland.getWorkspace(i) !== undefined);
-                    button.toggleClassName("active", i === Hyprland.active.workspace["id"]);
-                }, "changed"]],
-                child: Label({
-                    className: "icon",
-                    label: ""
-                }),
-                onClicked: () => execAsync(`hyprctl dispatch workspace ${i}`).catch(err => print(err))
-            }));
-        }
-    },
     hpack: "fill"
 });
+
+// setup -- box
+const max_workspaces = 10;
+for (let i = 1; i <= max_workspaces; ++i) {
+    workspaces.add(Button({
+        className: "workspace",
+        connections: [[Hyprland, button => {
+            button.toggleClassName("exists", Hyprland.getWorkspace(i) !== undefined);
+            button.toggleClassName("active", i === Hyprland.active.workspace["id"]);
+        }, "changed"]],
+        child: Label({
+            className: "icon",
+            label: ""
+        }),
+        onClicked: () => execAsync(`hyprctl dispatch workspace ${i}`).catch(err => print(err))
+    }));
+}
+
+// end setup -- box
 
 const left_modules = Box({
     className: "modules",
